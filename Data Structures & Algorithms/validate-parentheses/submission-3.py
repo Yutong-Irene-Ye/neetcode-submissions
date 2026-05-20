@@ -1,0 +1,27 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        if not s:
+            return True
+
+        stack=[]
+        closeToOpen={
+            "}":"{",
+            "]":"[",
+            ")":"("
+        }
+
+        for c in s:
+            if c in closeToOpen:
+                if not stack or stack[-1]!=closeToOpen[c]:
+                    return False
+                else:
+                    stack.pop()
+                
+            else:
+                stack.append(c)
+
+        if not stack:
+            return True 
+        else:
+            return False
+        
